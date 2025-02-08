@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "0c865392-39d5-4c39-8ac8-de5b4ff43e20",
+		"name": "Status Code",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40018975",
+		"_collection_link": "https://www.postman.com/ecom88-9265/workspace/api-testing-project/collection/40018975-0c865392-39d5-4c39-8ac8-de5b4ff43e20?action=share&source=collection_link&creator=40018975"
+	},
+	"item": [
+		{
+			"name": "Generic Syntax for All code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"validating the status code\" ,function (){\r",
+							"if(pm.response.code == 200)\r",
+							"{\r",
+							"    console.log(\"200 status code\")\r",
+							"}else if(pm.response.code == 201)\r",
+							"{\r",
+							"    console.log(\"201 status code\")\r",
+							"}else if (pm.response.code == 400)\r",
+							"{\r",
+							"    console.log(\"400 status code\")\r",
+							"}else if (pm.response.code == 401)\r",
+							"{\r",
+							"    console.log(\"401 status code\")\r",
+							"}else if (pm.response.code == 500)\r",
+							"{\r",
+							"     console.log(\"500 status code\")\r",
+							"}else\r",
+							"{\r",
+							"    console.log(\"Error in Status code\")\r",
+							"}\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/status/{{code}}",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"{{code}}"
+					]
+				},
+				"description": "Created a Generic request where you have to just enter the code in the variable and it will validate it through Post Script validation"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "code",
+			"value": "200",
+			"type": "string"
+		}
+	]
+}

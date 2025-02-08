@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "03e6dda5-da08-4671-8d77-8135d6fc6b90",
+		"name": "HTTP method",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40018975",
+		"_collection_link": "https://www.postman.com/ecom88-9265/workspace/api-testing-project/collection/40018975-03e6dda5-da08-4671-8d77-8135d6fc6b90?action=share&source=collection_link&creator=40018975"
+	},
+	"item": [
+		{
+			"name": "Validating the headers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"validating the headers\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"text/html; charset=utf-8\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/productsList",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post with Form_data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "search_product",
+							"value": "tshirt",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/searchProduct",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Request with 400 status code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"validating response code to 400\",function()\r",
+							"{\r",
+							"    pm.expect(jsonData.responseCode).to.eql(400)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"validating the response\" , function()\r",
+							"{\r",
+							"    pm.expect(jsonData.message).to.eql(\"Bad request, search_product parameter is missing in POST request.\")\r",
+							"})\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/searchProduct",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put request with 405 status code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"validating response code 405\", function()\r",
+							"{\r",
+							"\t\tpm.expect(jsonData.responseCode).to.eql(405)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/brandsList",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"validating the message\", function()\r",
+							"{\r",
+							"    pm.expect(jsonData.message).to.eql(\"User created!\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Viraj Vikas Nalwade",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "vn61968@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123@Viraj",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "23",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "June",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1998",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Viraj",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Nalawade",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Rigved Technologies",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Unique C.H.S",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "Airoli",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "India",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "400708",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Maharashtra",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Navi Mumbai",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "8169978206",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/createAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"validating if the details are updated or not\", function()\r",
+							"{\r",
+							"    pm.expect(jsonData.message).to.eql(\"User updated!\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Viraj Vikas Nalawade",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "vn61968@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123@Viraj",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mr",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "23",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "June",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "1998",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "Viraj",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Nalawade",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "Rigved Technologies",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "Unique C.H.S",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "Airoli",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "India",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "400708",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "Maharashtra",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Navi Mumbai",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "8169978206",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/updateAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"updateAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"validating if the user details is deleted or not\", function()\r",
+							"{\r",
+							"    pm.expect(jsonData.message).to.eql(\"Account deleted!\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "vn61968@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123@Viraj",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://automationexercise.com/api/deleteAccount",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"deleteAccount"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

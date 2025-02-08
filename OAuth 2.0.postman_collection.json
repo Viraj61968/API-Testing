@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "a512dc2c-a3b2-4c38-bdee-7f4a7d7fe43a",
+		"name": "OAuth 2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40018975",
+		"_collection_link": "https://www.postman.com/ecom88-9265/workspace/api-testing-project/collection/40018975-a512dc2c-a3b2-4c38-bdee-7f4a7d7fe43a?action=share&source=collection_link&creator=40018975"
+	},
+	"item": [
+		{
+			"name": "Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.collectionVariables.set(\"access token\", jsonData.access_token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "client_id",
+							"value": "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "erZOWM9g3UtwNRj340YYaK_W",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "trust",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/oauthapi/oauth2/resourceOwner/token",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"oauthapi",
+						"oauth2",
+						"resourceOwner",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCourse Using OAuth 2.0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Validating the headers\",function()\r",
+							"{\r",
+							"pm.expect(jsonData.courses.webAutomation[0].courseTitle).to.eql(\"Selenium Webdriver Java\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "scope",
+							"value": "profile",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Master!12",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "chvenkatesha6@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "Rctj0ra7vbthucbfp84Bp3rGt0oz2rBGT6ym2EcAZPZyXL6FgdIFQRmYqU7ruo3p",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "KEeG6dgJXc6HBj9KB0S71dV0LSkyMd1w",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://dev-zybfc10h.us.auth0.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "grs",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/oauthapi/getCourseDetails?access_token={{access token}}",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"oauthapi",
+						"getCourseDetails"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

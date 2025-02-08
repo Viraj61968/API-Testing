@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "cba9d167-5eb8-459c-8137-9d514b9fffe6",
+		"name": "GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40018975",
+		"_collection_link": "https://www.postman.com/ecom88-9265/workspace/api-testing-project/collection/40018975-cba9d167-5eb8-459c-8137-9d514b9fffe6?action=share&source=collection_link&creator=40018975"
+	},
+	"item": [
+		{
+			"name": "Mutation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation($name : String!,$originId : Int!, $locationId : Int!,$episodename : String!,$episode_aired : String!, $episode_no : String!)\r\n{\r\n  createCharacter(character : {name :$name, type : \"Human\", status : \"Alive\", species : \"Homo sapiens\", gender : \"Male\", image : \"JPG\", originId : $originId, locationId : $locationId} )\r\n  {\r\n    id\r\n  }\r\n  \r\n  createLocation(location : {name : \"New York\", type : \"City\", dimension : \"469 square miles\"})\r\n  {\r\n    id\r\n  }\r\n  \r\n  createEpisode(episode : {name : $episodename, air_date : $episode_aired, episode : $episode_no})\r\n  {\r\n   id \r\n  }\r\n  deleteCharacters(characterIds:12240)\r\n  {\r\n    charactersDeleted\r\n  }\r\n  \r\n}",
+						"variables": "{\r\n  \"name\" : \"Phobe Buffay\",\r\n  \"originId\" : 17916,\r\n  \"locationId\" : 17916,\r\n  \"episodename\" : \"The one Phobe Get Married\",\r\n  \"episode_aired\" : \"Jan 25, 2000\",\r\n  \"episode_no\" : \"S9E11\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/gq/graphql",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"gq",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query($characterid : Int!, $episodeid : Int!, $locationid : Int!)\r\n{\r\n character(characterId: $characterid)\r\n      {\r\n        name\r\n        type\r\n        status\r\n      }\r\n  \r\n episode(episodeId : $episodeid)\r\n  \t\t{\r\n        name\r\n        air_date\r\n        episode\r\n      }\r\n\r\nlocation(locationId : $locationid)\r\n  \t{\r\n      name\r\n      dimension\r\n      type\r\n    }\r\n}",
+						"variables": "{\r\n  \"characterid\" : 12227,\r\n  \"episodeid\" : 12739,\r\n  \"locationid\" : 17904\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/gq/graphql",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"gq",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
